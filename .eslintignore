@@ -1,0 +1,8 @@
+# enlint ignore 
+
+/node_modules
+
+/src/assets
+/public
+/src/serviceWorker.js
+/src/index.js

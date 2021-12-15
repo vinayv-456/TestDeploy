@@ -1,0 +1,68 @@
+diff --git a/node_modules/devextreme/esm/viz/chart_components/advanced_chart.js b/node_modules/devextreme/esm/viz/chart_components/advanced_chart.js
+index 11cc6b1..06b6ef8 100644
+--- a/node_modules/devextreme/esm/viz/chart_components/advanced_chart.js
++++ b/node_modules/devextreme/esm/viz/chart_components/advanced_chart.js
+@@ -230,34 +230,36 @@ export var AdvancedChart = BaseChart.inherit({
+             }, rotated, virtual)
+         });
+         _each(valueAxesOptions, (priority, axisOptions) => {
+-            var _axisOptions$panes;
+-            var axisPanes = [];
+-            var name = axisOptions.name;
+-            if (name && -1 !== inArray(name, axisNames)) {
+-                that._incidentOccurred("E2102");
+-                return
+-            }
+-            name && axisNames.push(name);
+-            if (axisOptions.pane) {
+-                axisPanes.push(axisOptions.pane)
+-            }
+-            if (null !== (_axisOptions$panes = axisOptions.panes) && void 0 !== _axisOptions$panes && _axisOptions$panes.length) {
+-                axisPanes = axisPanes.concat(axisOptions.panes.slice(0))
+-            }
+-            axisPanes = unique(axisPanes);
+-            if (!axisPanes.length) {
+-                axisPanes.push(void 0)
++            if(axisOptions) {
++                var _axisOptions$panes;
++                var axisPanes = [];
++                var name = axisOptions.name;
++                if (name && -1 !== inArray(name, axisNames)) {
++                    that._incidentOccurred("E2102");
++                    return
++                }
++                name && axisNames.push(name);
++                if (axisOptions.pane) {
++                    axisPanes.push(axisOptions.pane)
++                }
++                if (null !== (_axisOptions$panes = axisOptions.panes) && void 0 !== _axisOptions$panes && _axisOptions$panes.length) {
++                    axisPanes = axisPanes.concat(axisOptions.panes.slice(0))
++                }
++                axisPanes = unique(axisPanes);
++                if (!axisPanes.length) {
++                    axisPanes.push(void 0)
++                }
++                _each(axisPanes, (_, pane) => {
++                    var optionPath = _isArray(valueAxisOption) ? "valueAxis[".concat(priority, "]") : "valueAxis";
++                    valueAxesPopulatedOptions.push(that._populateAxesOptions("valueAxis", axisOptions, {
++                        name: name || DEFAULT_AXIS_NAME + valueAxesCounter++,
++                        pane: pane,
++                        priority: priority,
++                        optionPath: optionPath,
++                        crosshairMargin: rotated ? crosshairMargins.y : crosshairMargins.x
++                    }, rotated))
++                })
+             }
+-            _each(axisPanes, (_, pane) => {
+-                var optionPath = _isArray(valueAxisOption) ? "valueAxis[".concat(priority, "]") : "valueAxis";
+-                valueAxesPopulatedOptions.push(that._populateAxesOptions("valueAxis", axisOptions, {
+-                    name: name || DEFAULT_AXIS_NAME + valueAxesCounter++,
+-                    pane: pane,
+-                    priority: priority,
+-                    optionPath: optionPath,
+-                    crosshairMargin: rotated ? crosshairMargins.y : crosshairMargins.x
+-                }, rotated))
+-            })
+         });
+         that._redesignAxes(argumentAxesPopulatedOptions, true, paneWithNonVirtualAxis);
+         that._redesignAxes(valueAxesPopulatedOptions, false)
