@@ -1,7 +1,7 @@
 {
   "name": "vistrain",
   "version": "0.1.9",
-  "homepage": "http://vinayv-456.github.io",
+  "homepage": "https://vinayv-456.github.io/TestDeploy/",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.14.7",
