@@ -20,7 +20,7 @@ import useClickOutside from '../../../shared/hooks/useClickOutside';
 import { ReactComponent as FilterIcon } from '../../../assets/icons/Filter/Filters.svg';
 import { ReactComponent as SearchIconSvg } from '../../../assets/icons/Filter/Search Black.svg';
 import NoResultSvg from '../../../assets/icons/Filter/No results on filter.svg';
-import { filterData } from '../../../constants/sampleData';
+// import { filterData } from '../../../constants/sampleData';
 import { localString } from '../../../localization/localString';
 import DynamicSVGIcon from '../../Common/DynamicSVGIcon';
 import { NoResultText } from '../../GlobalSearch/GlobalSearchContainer.style';
